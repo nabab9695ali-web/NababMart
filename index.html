@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NababMart - India's Premium Online Shopping Destination</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Shop the latest smartphones, electronics, trendy fashion, footwear, and smart home appliances on NababMart. Best prices, fast shipping, and easy returns.">
+  <meta name="keywords" content="ecommerce, online shopping, electronics, fashion, flipkart clone, amazon clone, nabab, portfolio">
+  <meta name="author" content="Nabab - nabab9695ali@gmail.com">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       Top Announcement Bar
+       ========================================================================== -->
+  <div class="announcement-bar text-center">
+    <div class="container d-flex justify-content-between align-items-center">
+      <div class="d-none d-md-block">
+        <i class="bi bi-shield-check me-1"></i> 100% Genuine Products & Free Delivery on orders over ₹499
+      </div>
+      <div class="mx-auto mx-md-0">
+        🎉 <strong>Special Mega Sale:</strong> Use code <span class="badge bg-warning text-dark fw-bold px-2 py-1">NABAB50</span> for 50% instant discount!
+      </div>
+      <div class="d-none d-lg-flex align-items-center gap-3">
+        <a href="#aboutDeveloperModal" data-bs-toggle="modal" class="text-white"><i class="bi bi-person-badge"></i> Developer Profile</a>
+        <span>|</span>
+        <a href="mailto:nabab9695ali@gmail.com" class="text-white"><i class="bi bi-envelope"></i> Help</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Main Sticky Navbar
+       ========================================================================== -->
+  <header class="main-navbar">
+    <div class="container">
+      <div class="row align-items-center gy-2">
+        
+        <!-- Brand Logo & Tagline -->
+        <div class="col-6 col-md-3 col-lg-2 d-flex align-items-center">
+          <a href="#" class="brand-logo" id="homeBrandLink">
+            <div class="brand-icon">
+              <i class="bi bi-bag-check-fill"></i>
+            </div>
+            <div>
+              <span>NababMart</span>
+              <span class="explore-plus">Explore <span class="text-warning">Plus ✦</span></span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Smart Search Bar with Autocomplete Suggestions -->
+        <div class="col-12 col-md-5 col-lg-5 order-3 order-md-2">
+          <div class="search-wrapper">
+            <div class="search-input-group d-flex align-items-center">
+              <input 
+                type="text" 
+                id="globalSearchInput" 
+                class="form-control" 
+                placeholder="Search for Mobiles, Electronics, Fashion, Brands and more..."
+                autocomplete="off"
+              >
+              <button class="btn-search" id="searchSubmitBtn" title="Search">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+            <!-- Dynamic Autocomplete Results Dropdown -->
+            <div class="search-suggestions" id="searchSuggestionsBox"></div>
+          </div>
+        </div>
+
+        <!-- Navigation Action Buttons (Location, Account, Wishlist, Cart, Theme) -->
+        <div class="col-6 col-md-4 col-lg-5 order-2 order-md-3 d-flex justify-content-end align-items-center gap-2">
+          
+          <!-- Location Picker Button -->
+          <button class="nav-action-btn d-none d-xl-flex" data-bs-toggle="modal" data-bs-target="#locationModal" title="Change Location">
+            <i class="bi bi-geo-alt-fill text-warning"></i>
+            <span class="d-flex flex-column text-start" style="line-height: 1.1;">
+              <span style="font-size: 0.7rem; opacity: 0.85;">Deliver to</span>
+              <span style="font-size: 0.85rem; font-weight: 700;" id="currentLocationText">New Delhi 110001</span>
+            </span>
+          </button>
+
+          <!-- User Account / Login Button -->
+          <button class="nav-action-btn" data-bs-toggle="modal" data-bs-target="#authModal" id="userAuthBtn">
+            <i class="bi bi-person-circle fs-5"></i>
+            <span class="d-none d-sm-inline" id="userAuthName">Sign In</span>
+          </button>
+
+          <!-- Wishlist Drawer Trigger -->
+          <button class="nav-action-btn" data-bs-toggle="offcanvas" data-bs-target="#wishlistOffcanvas" title="Wishlist">
+            <i class="bi bi-heart fs-5"></i>
+            <span class="d-none d-lg-inline">Wishlist</span>
+            <span class="badge-counter" id="wishlistBadge">0</span>
+          </button>
+
+          <!-- Cart Drawer Trigger -->
+          <button class="nav-action-btn" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" title="Shopping Cart">
+            <i class="bi bi-cart3 fs-5"></i>
+            <span class="d-none d-lg-inline">Cart</span>
+            <span class="badge-counter" id="cartBadge">0</span>
+          </button>
+
+          <!-- Theme Toggle (Dark / Light Mode) -->
+          <button class="theme-toggle-btn ms-1" id="themeToggleBtn" title="Switch Theme">
+            <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       Category Ribbon Strip
+       ========================================================================== -->
+  <nav class="category-ribbon">
+    <div class="container">
+      <div class="category-scroll" id="categoryRibbon">
+        <div class="category-pill active" data-category="all">
+          <div class="category-icon-wrap"><i class="bi bi-grid-fill"></i></div>
+          <span>All Products</span>
+        </div>
+        <div class="category-pill" data-category="mobiles">
+          <div class="category-icon-wrap"><i class="bi bi-phone"></i></div>
+          <span>Mobiles & Tablets</span>
+        </div>
+        <div class="category-pill" data-category="electronics">
+          <div class="category-icon-wrap"><i class="bi bi-laptop"></i></div>
+          <span>Electronics & Laptops</span>
+        </div>
+        <div class="category-pill" data-category="fashion">
+          <div class="category-icon-wrap"><i class="bi bi-person-heart"></i></div>
+          <span>Fashion & Apparel</span>
+        </div>
+        <div class="category-pill" data-category="watches">
+          <div class="category-icon-wrap"><i class="bi bi-smartwatch"></i></div>
+          <span>Watches & Wearables</span>
+        </div>
+        <div class="category-pill" data-category="home">
+          <div class="category-icon-wrap"><i class="bi bi-house-heart"></i></div>
+          <span>Home & Kitchen</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==========================================================================
+       Hero Banner Carousel (Deals & Offers)
+       ========================================================================== -->
+  <section class="hero-carousel-section">
+    <div class="container">
+      <div id="heroBannerCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4500">
+        
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#heroBannerCarousel" data-bs-slide-to="0" class="active"></button>
+          <button type="button" data-bs-target="#heroBannerCarousel" data-bs-slide-to="1"></button>
+          <button type="button" data-bs-target="#heroBannerCarousel" data-bs-slide-to="2"></button>
+        </div>
+
+        <!-- Slides -->
+        <div class="carousel-inner" id="heroCarouselInner">
+          <!-- Dynamically populated from data.js or fallback -->
+          <div class="carousel-item active">
+            <div class="hero-slide-card" style="background-image: url('https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=1200&q=80');">
+              <div class="hero-content">
+                <span class="hero-badge">Special Tech Fiesta</span>
+                <h1 class="hero-title">Next-Gen Flagship Smartphones & Laptops</h1>
+                <p class="hero-subtitle">Get up to 50% discount + No Cost EMI on Apple, Samsung & OnePlus devices.</p>
+                <button class="btn-hero-cta" onclick="filterByCategory('mobiles')">
+                  Explore Deals <i class="bi bi-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="hero-slide-card" style="background-image: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=80');">
+              <div class="hero-content">
+                <span class="hero-badge">Mega Fashion Fest</span>
+                <h2 class="hero-title">Trending Styles & Streetwear Drops</h2>
+                <p class="hero-subtitle">Flat 40-70% Off on Top Brands: Nike, Levi's, Adidas, Puma and more.</p>
+                <button class="btn-hero-cta" onclick="filterByCategory('fashion')">
+                  Shop Wardrobe <i class="bi bi-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="hero-slide-card" style="background-image: url('https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80');">
+              <div class="hero-content">
+                <span class="hero-badge">Smart Living</span>
+                <h2 class="hero-title">Smart Home & Kitchen Innovations</h2>
+                <p class="hero-subtitle">Transform your daily routine with Philips, Dyson, Casio & Sony appliances.</p>
+                <button class="btn-hero-cta" onclick="filterByCategory('home')">
+                  Upgrade Home <i class="bi bi-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Arrows -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroBannerCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroBannerCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       Deals of the Day Strip & Flash Countdown
+       ========================================================================== -->
+  <section class="container mb-4">
+    <div class="deals-strip-banner d-flex flex-wrap justify-content-between align-items-center gap-3">
+      <div class="d-flex align-items-center gap-3">
+        <div class="bg-primary text-white p-2 rounded-3">
+          <i class="bi bi-lightning-charge-fill fs-4 text-warning"></i>
+        </div>
+        <div>
+          <h5 class="mb-0 fw-bold">Deal of the Day</h5>
+          <small class="text-muted">Top offers refresh every 24 hours</small>
+        </div>
+      </div>
+
+      <!-- Real-time Countdown Timer -->
+      <div class="deal-timer-box">
+        <span class="text-secondary fw-semibold d-none d-sm-inline"><i class="bi bi-clock-history me-1"></i> Ends in:</span>
+        <div class="countdown-box">
+          <div class="timer-unit" id="timerHours">08</div>
+          <span class="timer-colon">:</span>
+          <div class="timer-unit" id="timerMinutes">45</div>
+          <span class="timer-colon">:</span>
+          <div class="timer-unit" id="timerSeconds">30</div>
+        </div>
+      </div>
+
+      <!-- Quick Action -->
+      <div>
+        <button class="btn btn-outline-primary btn-sm fw-bold px-3 py-2 rounded-pill" onclick="applySpecialDiscountFilter()">
+          View All Offers <i class="bi bi-chevron-right ms-1"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       Main Storefront Section (Filters Sidebar + Products Grid)
+       ========================================================================== -->
+  <main class="store-container">
+    <div class="container">
+      <div class="row g-4">
+        
+        <!-- Filter Sidebar (Responsive Column) -->
+        <aside class="col-lg-3">
+          <div class="filter-sidebar">
+            <div class="filter-title">
+              <span><i class="bi bi-sliders me-2"></i>Filters</span>
+              <button class="btn btn-link btn-sm text-primary p-0 text-decoration-none fw-semibold" id="resetFiltersBtn">
+                Clear All
+              </button>
+            </div>
+
+            <!-- Filter: Categories -->
+            <div class="filter-group">
+              <div class="filter-group-header">Categories</div>
+              <label class="filter-item">
+                <span><input type="radio" name="categoryFilter" value="all" checked> All Categories</span>
+                <span class="filter-badge" id="countAll">16</span>
+              </label>
+              <label class="filter-item">
+                <span><input type="radio" name="categoryFilter" value="mobiles"> Mobiles & Tablets</span>
+                <span class="filter-badge" id="countMobiles">3</span>
+              </label>
+              <label class="filter-item">
+                <span><input type="radio" name="categoryFilter" value="electronics"> Electronics & Audio</span>
+                <span class="filter-badge" id="countElectronics">4</span>
+              </label>
+              <label class="filter-item">
+                <span><input type="radio" name="categoryFilter" value="fashion"> Fashion & Footwear</span>
+                <span class="filter-badge" id="countFashion">4</span>
+              </label>
+              <label class="filter-item">
+                <span><input type="radio" name="categoryFilter" value="watches"> Watches & Wearables</span>
+                <span class="filter-badge" id="countWatches">2</span>
+              </label>
+              <label class="filter-item">
+                <span><input type="radio" name="categoryFilter" value="home"> Home & Kitchen</span>
+                <span class="filter-badge" id="countHome">3</span>
+              </label>
+            </div>
+
+            <!-- Filter: Price Range Slider -->
+            <div class="filter-group">
+              <div class="filter-group-header">Max Price</div>
+              <div class="price-slider-wrap">
+                <input type="range" id="priceRangeSlider" min="1000" max="150000" step="1000" value="150000">
+                <div class="price-labels">
+                  <span>₹1,000</span>
+                  <span id="priceRangeValue" class="text-primary fw-bold">Up to ₹1,50,000</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Filter: Brands -->
+            <div class="filter-group">
+              <div class="filter-group-header">Brands</div>
+              <div id="brandFilterContainer">
+                <!-- Dynamically populated checkboxes -->
+              </div>
+            </div>
+
+            <!-- Filter: Customer Rating -->
+            <div class="filter-group">
+              <div class="filter-group-header">Customer Rating</div>
+              <label class="filter-item">
+                <span><input type="radio" name="ratingFilter" value="0" checked> Any Rating</span>
+              </label>
+              <label class="filter-item">
+                <span><input type="radio" name="ratingFilter" value="4.5"> 4.5★ & above</span>
+                <span class="text-warning"><i class="bi bi-star-fill"></i></span>
+              </label>
+              <label class="filter-item">
+                <span><input type="radio" name="ratingFilter" value="4.0"> 4.0★ & above</span>
+                <span class="text-warning"><i class="bi bi-star-fill"></i></span>
+              </label>
+              <label class="filter-item">
+                <span><input type="radio" name="ratingFilter" value="3.5"> 3.5★ & above</span>
+                <span class="text-warning"><i class="bi bi-star-fill"></i></span>
+              </label>
+            </div>
+
+            <!-- Filter: Minimum Discount -->
+            <div class="filter-group">
+              <div class="filter-group-header">Discount</div>
+              <label class="filter-item">
+                <span><input type="radio" name="discountFilter" value="0" checked> All Discounts</span>
+              </label>
+              <label class="filter-item">
+                <span><input type="radio" name="discountFilter" value="10"> 10% or more</span>
+              </label>
+              <label class="filter-item">
+                <span><input type="radio" name="discountFilter" value="30"> 30% or more</span>
+              </label>
+              <label class="filter-item">
+                <span><input type="radio" name="discountFilter" value="50"> 50% or more</span>
+              </label>
+            </div>
+
+          </div>
+        </aside>
+
+        <!-- Product Cards Grid & Controls -->
+        <section class="col-lg-9">
+          
+          <!-- Controls Bar (Active Filters, Counter & Sorting) -->
+          <div class="store-controls-bar">
+            <div>
+              <span class="results-count" id="resultsCount">Showing 16 products</span>
+            </div>
+
+            <!-- Sort By Dropdown -->
+            <div class="sort-dropdown d-flex align-items-center gap-2">
+              <label for="sortBySelect" class="text-secondary small fw-bold mb-0">Sort By:</label>
+              <select id="sortBySelect" class="form-select form-select-sm">
+                <option value="popularity">Popularity</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Customer Rating</option>
+                <option value="discount">Highest Discount</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Active Filter Chips Area -->
+          <div class="active-filters-chips" id="activeFilterChips"></div>
+
+          <!-- Products Grid -->
+          <div class="row g-3" id="productsGridContainer">
+            <!-- Dynamic product cards rendered by app.js -->
+          </div>
+
+          <!-- No Products Found State -->
+          <div id="noProductsFound" class="text-center py-5 d-none">
+            <div class="display-1 text-muted mb-3"><i class="bi bi-search"></i></div>
+            <h4 class="fw-bold">No Products Found</h4>
+            <p class="text-secondary">We couldn't find any products matching your current filters and search criteria.</p>
+            <button class="btn btn-primary rounded-pill px-4" id="clearSearchFiltersBtn">Reset All Filters</button>
+          </div>
+
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       Customer Trust & Value Propositions
+       ========================================================================== -->
+  <section class="trust-features-section">
+    <div class="container">
+      <div class="row g-4 text-start">
+        <div class="col-6 col-md-3">
+          <div class="feature-box">
+            <div class="feature-icon-circle">
+              <i class="bi bi-truck"></i>
+            </div>
+            <div>
+              <div class="feature-title">Free Shipping</div>
+              <p class="feature-subtitle">On all eligible orders above ₹499</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="feature-box">
+            <div class="feature-icon-circle">
+              <i class="bi bi-arrow-repeat"></i>
+            </div>
+            <div>
+              <div class="feature-title">Easy 7-Day Return</div>
+              <p class="feature-subtitle">Hassle-free instant replacement</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="feature-box">
+            <div class="feature-icon-circle">
+              <i class="bi bi-shield-lock"></i>
+            </div>
+            <div>
+              <div class="feature-title">100% Secure Checkout</div>
+              <p class="feature-subtitle">Encrypted UPI, Cards & NetBanking</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="feature-box">
+            <div class="feature-icon-circle">
+              <i class="bi bi-headset"></i>
+            </div>
+            <div>
+              <div class="feature-title">24/7 Live Support</div>
+              <p class="feature-subtitle">Dedicated support at your service</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       Comprehensive Footer (Flipkart / Amazon Style + Developer Portfolio)
+       ========================================================================== -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="row g-4">
+        
+        <!-- About Column -->
+        <div class="col-6 col-md-3">
+          <div class="footer-heading">About NababMart</div>
+          <ul class="footer-links">
+            <li><a href="#aboutDeveloperModal" data-bs-toggle="modal">About Developer</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Corporate Information</a></li>
+            <li><a href="#">Press Releases</a></li>
+          </ul>
+        </div>
+
+        <!-- Help Column -->
+        <div class="col-6 col-md-3">
+          <div class="footer-heading">Help & Support</div>
+          <ul class="footer-links">
+            <li><a href="#">Payments & Security</a></li>
+            <li><a href="#">Shipping & Tracking</a></li>
+            <li><a href="#">Cancellation & Returns</a></li>
+            <li><a href="#">FAQ & Help Center</a></li>
+            <li><a href="#">Report an Issue</a></li>
+          </ul>
+        </div>
+
+        <!-- Policy Column -->
+        <div class="col-6 col-md-3">
+          <div class="footer-heading">Consumer Policy</div>
+          <ul class="footer-links">
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Security & Privacy</a></li>
+            <li><a href="#">Sitemap</a></li>
+            <li><a href="#">Grievance Redressal</a></li>
+            <li><a href="#">EPR Compliance</a></li>
+          </ul>
+        </div>
+
+        <!-- Developer Contact / Portfolio Info -->
+        <div class="col-12 col-md-3 border-start-md border-secondary ps-md-4">
+          <div class="footer-heading">Developer Portfolio</div>
+          <p class="text-white-50 small mb-2">
+            This project was designed & developed by <strong>Nabab</strong> as a showcase for frontend developer roles & interviews.
+          </p>
+          <div class="developer-badge-pill mb-3">
+            <i class="bi bi-patch-check-fill text-warning"></i> Open for Frontend Opportunities
+          </div>
+          <p class="text-white small mb-1">
+            <i class="bi bi-envelope-fill text-warning me-2"></i> 
+            <a href="mailto:nabab9695ali@gmail.com" class="text-white">nabab9695ali@gmail.com</a>
+          </p>
+          <p class="text-white small mb-3">
+            <i class="bi bi-github text-warning me-2"></i> 
+            <a href="https://github.com" target="_blank" class="text-white" id="githubProfileLink">GitHub Repository</a>
+          </p>
+          <div class="d-flex gap-2">
+            <a href="https://github.com" target="_blank" class="btn btn-sm btn-outline-light rounded-circle"><i class="bi bi-github"></i></a>
+            <a href="https://linkedin.com" target="_blank" class="btn btn-sm btn-outline-light rounded-circle"><i class="bi bi-linkedin"></i></a>
+            <a href="mailto:nabab9695ali@gmail.com" class="btn btn-sm btn-outline-light rounded-circle"><i class="bi bi-envelope"></i></a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom Bar -->
+      <div class="footer-bottom-bar d-flex flex-wrap justify-content-between align-items-center">
+        <div class="d-flex align-items-center gap-2 mb-2 mb-md-0">
+          <span>&copy; 2026 NababMart. Crafted with <i class="bi bi-heart-fill text-danger"></i> by Nabab.</span>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <span class="small text-white-50">Accepted Payment Gateways:</span>
+          <div class="d-flex gap-2 fs-5 text-white">
+            <i class="fa-brands fa-cc-visa" title="Visa"></i>
+            <i class="fa-brands fa-cc-mastercard" title="MasterCard"></i>
+            <i class="fa-solid fa-credit-card" title="RuPay"></i>
+            <i class="fa-brands fa-google-pay" title="Google Pay"></i>
+            <i class="fa-solid fa-money-bill-transfer" title="UPI"></i>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODALS & OFFCANVAS DRAWERS
+       ========================================================================== -->
+
+  <!-- 1. Offcanvas Shopping Cart -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel" style="width: 420px;">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="cartOffcanvasLabel">
+        <i class="bi bi-cart3 text-primary"></i> My Shopping Cart (<span id="cartDrawerCount">0</span>)
+      </h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      
+      <!-- Cart Items Container -->
+      <div id="cartItemsContainer" class="flex-grow-1 overflow-auto pe-1">
+        <!-- Dynamic cart item cards -->
+      </div>
+
+      <!-- Empty Cart State -->
+      <div id="cartEmptyState" class="text-center py-5 d-none">
+        <div class="display-3 text-muted mb-3"><i class="bi bi-cart-x"></i></div>
+        <h5 class="fw-bold">Your Cart is Empty</h5>
+        <p class="text-muted small">Explore our wide range of products and add items to your cart!</p>
+        <button class="btn btn-primary btn-sm rounded-pill px-4" data-bs-dismiss="offcanvas">Start Shopping</button>
+      </div>
+
+      <!-- Cart Summary & Coupon Section -->
+      <div id="cartCheckoutSection" class="pt-3 border-top mt-auto">
+        <!-- Coupon Code Promo Box -->
+        <div class="coupon-input-wrap">
+          <input type="text" id="couponCodeInput" class="form-control" placeholder="Enter coupon (e.g. NABAB50)">
+          <button class="btn-apply-coupon" id="applyCouponBtn">Apply</button>
+        </div>
+        <div id="couponStatusMessage" class="small mb-2"></div>
+
+        <!-- Summary Details -->
+        <div class="cart-summary-box">
+          <div class="summary-line">
+            <span>Price (<span id="summaryTotalItems">0</span> items)</span>
+            <span id="summaryGrossPrice">₹0</span>
+          </div>
+          <div class="summary-line text-success">
+            <span>Discount</span>
+            <span id="summaryDiscount">- ₹0</span>
+          </div>
+          <div class="summary-line">
+            <span>Delivery Charges</span>
+            <span id="summaryDeliveryFee" class="text-success">FREE</span>
+          </div>
+          <div class="summary-line total">
+            <span>Total Amount</span>
+            <span id="summaryNetPrice" class="text-primary">₹0</span>
+          </div>
+        </div>
+
+        <button class="btn btn-warning w-100 py-2 mt-3 fw-bold text-dark shadow-sm" id="proceedToCheckoutBtn">
+          Proceed to Checkout <i class="bi bi-arrow-right ms-1"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 2. Offcanvas Wishlist -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="wishlistOffcanvas" aria-labelledby="wishlistOffcanvasLabel" style="width: 400px;">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="wishlistOffcanvasLabel">
+        <i class="bi bi-heart-fill text-danger"></i> My Wishlist (<span id="wishlistDrawerCount">0</span>)
+      </h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <div id="wishlistItemsContainer" class="flex-grow-1 overflow-auto pe-1">
+        <!-- Dynamic wishlist items -->
+      </div>
+      <div id="wishlistEmptyState" class="text-center py-5 d-none">
+        <div class="display-3 text-muted mb-3"><i class="bi bi-heartbreak"></i></div>
+        <h5 class="fw-bold">Your Wishlist is Empty</h5>
+        <p class="text-muted small">Save items that you like to check them out later.</p>
+        <button class="btn btn-primary btn-sm rounded-pill px-4" data-bs-dismiss="offcanvas">Discover Products</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Product Quick View Modal -->
+  <div class="modal fade" id="quickViewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-header border-bottom-0 pb-0">
+          <span class="badge bg-primary" id="qvCategory">Electronics</span>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="row g-4">
+            <!-- Images Gallery -->
+            <div class="col-md-6">
+              <div class="quick-view-gallery">
+                <img id="qvMainImage" src="" alt="Product Image" class="quick-view-main-img">
+                <div class="quick-view-thumbnails" id="qvThumbnails"></div>
+              </div>
+            </div>
+            <!-- Details & Actions -->
+            <div class="col-md-6 d-flex flex-column">
+              <div class="text-uppercase text-muted small fw-bold" id="qvBrand">Brand</div>
+              <h4 class="fw-bold mt-1 mb-2" id="qvTitle">Product Title</h4>
+              
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <span class="rating-pill" id="qvRating"><i class="bi bi-star-fill"></i> 4.5</span>
+                <span class="rating-count" id="qvRatingCount">(1,240 ratings)</span>
+                <span class="badge bg-success-subtle text-success ms-auto">In Stock</span>
+              </div>
+
+              <div class="pricing-wrap mb-3">
+                <span class="current-price fs-3" id="qvPrice">₹0</span>
+                <span class="original-price" id="qvOriginalPrice">₹0</span>
+                <span class="discount-rate" id="qvDiscount">0% OFF</span>
+              </div>
+
+              <p class="text-secondary small mb-3" id="qvDescription">Product description goes here.</p>
+
+              <!-- Specifications Table -->
+              <div class="mb-4">
+                <h6 class="fw-bold small text-uppercase text-muted mb-2">Specifications:</h6>
+                <div class="table-responsive">
+                  <table class="table table-sm table-bordered small mb-0" id="qvSpecsTable">
+                    <!-- Specs injected dynamically -->
+                  </table>
+                </div>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="d-flex gap-2 mt-auto">
+                <button class="btn btn-warning flex-grow-1 fw-bold text-dark py-2" id="qvAddToCartBtn">
+                  <i class="bi bi-cart-plus me-1"></i> Add to Cart
+                </button>
+                <button class="btn btn-primary flex-grow-1 fw-bold py-2" id="qvBuyNowBtn">
+                  <i class="bi bi-lightning-charge me-1"></i> Buy Now
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Multi-Step Checkout Modal (Simulation) -->
+  <div class="modal fade" id="checkoutModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold"><i class="bi bi-shield-check text-primary me-2"></i>Secure Checkout</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          
+          <!-- Checkout Steps Indicator -->
+          <div class="checkout-steps">
+            <div class="step-item active" id="stepIndicator1">
+              <div class="step-circle">1</div>
+              <span class="step-label">Shipping</span>
+            </div>
+            <div class="step-item" id="stepIndicator2">
+              <div class="step-circle">2</div>
+              <span class="step-label">Payment</span>
+            </div>
+            <div class="step-item" id="stepIndicator3">
+              <div class="step-circle">3</div>
+              <span class="step-label">Confirmation</span>
+            </div>
+          </div>
+
+          <!-- Step 1: Shipping Address -->
+          <div id="checkoutStep1">
+            <h6 class="fw-bold mb-3">Delivery Address</h6>
+            <form id="shippingAddressForm" onsubmit="event.preventDefault(); goToCheckoutStep(2);">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label small fw-bold">Full Name *</label>
+                  <input type="text" class="form-control" id="shipFullName" required value="Nabab Ali">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label small fw-bold">Mobile Number *</label>
+                  <input type="tel" class="form-control" id="shipPhone" required value="9876543210">
+                </div>
+                <div class="col-12">
+                  <label class="form-label small fw-bold">Street Address / House No. *</label>
+                  <input type="text" class="form-control" id="shipAddress" required value="42, Tech Park Avenue, Connaught Place">
+                </div>
+                <div class="col-md-5">
+                  <label class="form-label small fw-bold">City *</label>
+                  <input type="text" class="form-control" id="shipCity" required value="New Delhi">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label small fw-bold">State *</label>
+                  <select class="form-select" id="shipState" required>
+                    <option selected>Delhi</option>
+                    <option>Maharashtra</option>
+                    <option>Karnataka</option>
+                    <option>Uttar Pradesh</option>
+                    <option>West Bengal</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label small fw-bold">PIN Code *</label>
+                  <input type="text" class="form-control" id="shipPincode" required value="110001">
+                </div>
+              </div>
+              <div class="d-flex justify-content-end mt-4">
+                <button type="submit" class="btn btn-primary px-4 fw-bold">
+                  Continue to Payment <i class="bi bi-arrow-right ms-1"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Step 2: Payment Options -->
+          <div id="checkoutStep2" class="d-none">
+            <h6 class="fw-bold mb-3">Select Payment Method</h6>
+            
+            <div class="d-flex flex-column gap-3 mb-4">
+              
+              <!-- Option: UPI -->
+              <label class="border rounded p-3 d-flex align-items-center justify-content-between cursor-pointer">
+                <div class="d-flex align-items-center gap-3">
+                  <input type="radio" name="paymentOption" value="upi" checked>
+                  <div>
+                    <div class="fw-bold">UPI / Google Pay / PhonePe / Paytm</div>
+                    <small class="text-muted">Instant payment using UPI ID or scan QR</small>
+                  </div>
+                </div>
+                <span class="fs-4 text-primary"><i class="fa-solid fa-qrcode"></i></span>
+              </label>
+
+              <!-- Option: Cards -->
+              <label class="border rounded p-3 d-flex align-items-center justify-content-between cursor-pointer">
+                <div class="d-flex align-items-center gap-3">
+                  <input type="radio" name="paymentOption" value="card">
+                  <div>
+                    <div class="fw-bold">Credit / Debit / ATM Card</div>
+                    <small class="text-muted">Visa, MasterCard, RuPay, Maestro</small>
+                  </div>
+                </div>
+                <span class="fs-4 text-warning"><i class="fa-solid fa-credit-card"></i></span>
+              </label>
+
+              <!-- Option: Cash on Delivery -->
+              <label class="border rounded p-3 d-flex align-items-center justify-content-between cursor-pointer">
+                <div class="d-flex align-items-center gap-3">
+                  <input type="radio" name="paymentOption" value="cod">
+                  <div>
+                    <div class="fw-bold">Cash on Delivery (COD)</div>
+                    <small class="text-muted">Pay in cash or UPI upon delivery</small>
+                  </div>
+                </div>
+                <span class="fs-4 text-success"><i class="fa-solid fa-truck-ramp-box"></i></span>
+              </label>
+
+            </div>
+
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-outline-secondary px-3" onclick="goToCheckoutStep(1)">
+                <i class="bi bi-arrow-left me-1"></i> Back
+              </button>
+              <button class="btn btn-success px-4 fw-bold" id="placeOrderFinalBtn" onclick="completeOrderPlacement()">
+                Pay & Place Order (<span id="checkoutFinalAmount">₹0</span>)
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3: Order Confirmation Screen -->
+          <div id="checkoutStep3" class="d-none">
+            <div class="order-success-card">
+              <div class="success-checkmark-circle">
+                <i class="bi bi-check-lg"></i>
+              </div>
+              <h3 class="fw-bold text-success mb-1">Order Placed Successfully!</h3>
+              <p class="text-muted mb-3">Thank you for shopping with NababMart.</p>
+              
+              <div class="alert alert-info py-2 px-3 d-inline-block small mb-4">
+                <strong>Order ID:</strong> <span id="confirmedOrderId">ORD-89234710</span> | <strong>Estimated Delivery:</strong> in 2-3 business days
+              </div>
+
+              <div class="card bg-light border-0 p-3 text-start mb-4" id="orderConfirmedDetailsBox">
+                <!-- Injected summary details -->
+              </div>
+
+              <div class="d-flex justify-content-center gap-2">
+                <button class="btn btn-primary px-4 fw-bold rounded-pill" data-bs-dismiss="modal">
+                  Continue Shopping
+                </button>
+                <button class="btn btn-outline-secondary px-4 fw-bold rounded-pill" onclick="window.print()">
+                  <i class="bi bi-printer me-1"></i> Print Invoice
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Location / City Selector Modal -->
+  <div class="modal fade" id="locationModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header">
+          <h6 class="modal-title fw-bold"><i class="bi bi-geo-alt text-primary me-2"></i>Select Delivery Location</h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label small fw-bold">Enter Delivery PIN Code</label>
+            <div class="input-group">
+              <input type="text" id="pincodeInput" class="form-control form-control-sm" placeholder="e.g. 110001" maxlength="6">
+              <button class="btn btn-primary btn-sm" id="applyPincodeBtn">Apply</button>
+            </div>
+          </div>
+          <div class="text-muted small mb-2">Popular Cities:</div>
+          <div class="d-flex flex-wrap gap-2">
+            <button class="btn btn-outline-secondary btn-sm py-1 px-2" onclick="setQuickCity('New Delhi 110001')">New Delhi</button>
+            <button class="btn btn-outline-secondary btn-sm py-1 px-2" onclick="setQuickCity('Mumbai 400001')">Mumbai</button>
+            <button class="btn btn-outline-secondary btn-sm py-1 px-2" onclick="setQuickCity('Bengaluru 560001')">Bengaluru</button>
+            <button class="btn btn-outline-secondary btn-sm py-1 px-2" onclick="setQuickCity('Hyderabad 500001')">Hyderabad</button>
+            <button class="btn btn-outline-secondary btn-sm py-1 px-2" onclick="setQuickCity('Kolkata 700001')">Kolkata</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. User Login / Registration Modal -->
+  <div class="modal fade" id="authModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-header border-bottom-0 pb-0">
+          <ul class="nav nav-pills" id="authTabs" role="tablist">
+            <li class="nav-item">
+              <button class="nav-link active fw-bold" id="login-tab" data-bs-toggle="pill" data-bs-target="#loginTabPane" type="button">Sign In</button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link fw-bold" id="register-tab" data-bs-toggle="pill" data-bs-target="#registerTabPane" type="button">Create Account</button>
+            </li>
+          </ul>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="tab-content" id="authTabContent">
+            
+            <!-- Login Form -->
+            <div class="tab-pane fade show active" id="loginTabPane">
+              <form id="loginForm" onsubmit="event.preventDefault(); handleUserLogin();">
+                <div class="mb-3">
+                  <label class="form-label small fw-bold">Email or Mobile Number</label>
+                  <input type="email" id="loginEmail" class="form-control" placeholder="name@example.com" value="nabab9695ali@gmail.com" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label small fw-bold">Password</label>
+                  <input type="password" id="loginPassword" class="form-control" placeholder="••••••••" value="demo1234" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 fw-bold py-2">Sign In</button>
+              </form>
+            </div>
+
+            <!-- Register Form -->
+            <div class="tab-pane fade" id="registerTabPane">
+              <form id="registerForm" onsubmit="event.preventDefault(); handleUserRegister();">
+                <div class="mb-3">
+                  <label class="form-label small fw-bold">Full Name</label>
+                  <input type="text" id="regName" class="form-control" placeholder="Your Name" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label small fw-bold">Email Address</label>
+                  <input type="email" id="regEmail" class="form-control" placeholder="name@example.com" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label small fw-bold">Password</label>
+                  <input type="password" id="regPassword" class="form-control" placeholder="Create strong password" required>
+                </div>
+                <button type="submit" class="btn btn-warning w-100 fw-bold py-2">Create Account</button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. About Developer (Nabab) Showcase Modal -->
+  <div class="modal fade" id="aboutDeveloperModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title fw-bold"><i class="bi bi-person-workspace me-2"></i>Frontend Developer Portfolio</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-4 text-center">
+          <div class="mb-3">
+            <div class="d-inline-block p-1 bg-primary rounded-circle">
+              <div class="bg-light rounded-circle text-primary d-flex align-items-center justify-content-center fw-bold fs-1" style="width: 80px; height: 80px;">
+                N
+              </div>
+            </div>
+          </div>
+          <h4 class="fw-bold mb-1">Nabab</h4>
+          <p class="text-primary fw-semibold mb-2">Frontend Web Developer</p>
+          <p class="text-muted small mb-3">
+            Built this comprehensive, responsive e-commerce web platform inspired by Flipkart, Amazon & Myntra using HTML5, CSS3, Bootstrap 5, and JavaScript.
+          </p>
+          <div class="card bg-light border-0 p-3 mb-3 text-start small">
+            <div class="mb-2"><strong><i class="bi bi-envelope-fill text-danger me-2"></i>Email:</strong> <a href="mailto:nabab9695ali@gmail.com" class="text-primary">nabab9695ali@gmail.com</a></div>
+            <div class="mb-2"><strong><i class="bi bi-code-slash text-primary me-2"></i>Core Skills:</strong> HTML5, CSS3, Bootstrap 5, JavaScript (ES6+), Responsive UI/UX, Git/GitHub</div>
+            <div><strong><i class="bi bi-check2-all text-success me-2"></i>Project Features:</strong> Dynamic Filtering, Cart & Wishlist, LocalStorage, Live Search, Multi-Step Checkout, Dark/Light Mode</div>
+          </div>
+          <div class="d-flex justify-content-center gap-2">
+            <a href="mailto:nabab9695ali@gmail.com" class="btn btn-primary px-4 fw-bold">
+              <i class="bi bi-envelope me-1"></i> Send Email
+            </a>
+            <a href="https://github.com" target="_blank" class="btn btn-outline-dark px-4 fw-bold" id="modalGithubBtn">
+              <i class="bi bi-github me-1"></i> View GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Bootstrap Toast Notification System
+       ========================================================================== -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast align-items-center text-bg-dark border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body d-flex align-items-center gap-2">
+          <i id="toastIcon" class="bi bi-check-circle-fill text-success fs-5"></i>
+          <span id="toastMessage">Item added to cart!</span>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Product Data -->
+  <script src="js/data.js"></script>
+  <!-- Main Application Logic -->
+  <script src="js/app.js"></script>
+</body>
+</html>
