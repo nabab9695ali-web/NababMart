@@ -125,6 +125,8 @@ When presenting this project to interviewers:
 
 - **Developer**: Nabab
 - **Email**: [nabab9695ali@gmail.com](mailto:nabab9695ali@gmail.com)
+- **GitHub**: [github.com/nabab9695ali-web](https://github.com/nabab9695ali-web)
+- **LinkedIn**: [linkedin.com/in/nabab-ali-723053346](https://www.linkedin.com/in/nabab-ali-723053346/)
 - **Role**: Frontend Web Developer
 - **Focus**: Responsive Web Design, JavaScript, React, UI/UX Engineering
 
