@@ -99,7 +99,7 @@ FlipCart/
 
 1. Clone or download the repository to your computer:
    ```bash
-   git clone https://github.com/your-username/FlipCart.git
+   git clone https://github.com/nabab9695ali-web/NababMart.git
    ```
 2. Navigate to the project directory:
    ```bash
