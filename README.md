@@ -1,7 +1,7 @@
 # 🛍️ NababMart - Premium E-Commerce Web Platform (Flipkart / Amazon Clone)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Built with HTML5, CSS3 & Bootstrap 5](https://img.shields.io/badge/Tech-HTML5%20%7C%20CSS3%20%7C%20Bootstrap%205%20%7C%20Vanilla%20JS-brightgreen)](https://github.com)
+[![Built with HTML5, CSS3 & Bootstrap 5](https://img.shields.io/badge/Tech-HTML5%20%7C%20CSS3%20%7C%20Bootstrap%205%20%7C%20Vanilla%20JS-brightgreen)](https://github.com/nabab9695ali-web/NababMart)
 [![Developer: Nabab](https://img.shields.io/badge/Developer-Nabab-orange)](mailto:nabab9695ali@gmail.com)
 
 A high-performance, fully-responsive, modern E-Commerce web application inspired by **Flipkart, Amazon, and Myntra**. Built completely from scratch using **Semantic HTML5, Custom Modern CSS3, Bootstrap 5.3, and Modular Vanilla JavaScript (ES6+)**.
